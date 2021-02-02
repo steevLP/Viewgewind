@@ -23,6 +23,7 @@ public class VG_View extends Application
 	public Button spielfeld[][] = new Button[7][6];
 	public String playerNameOne;
 	public String playerNameTwo;
+	public VG_Model board = new VG_Model();
 	  
 	public void start(Stage primaryStage)
 	{
@@ -51,9 +52,11 @@ public class VG_View extends Application
 		BorderPane layout = new BorderPane();
 		VBox contribs = new VBox();
 		Button CreditClose = new Button("Okay");
+		
 		contribs.getChildren().add(new Label("Credits"));
 		contribs.getChildren().add(new Label("Maurice F (Functional Programming)"));
 		contribs.getChildren().add(new Label("Jenni (Visual Programming)"));
+		contribs.getChildren().add(new Label("Alex (Conzept Design)"));
 		contribs.getChildren().add(new Label("Michell Dehn (war dabei)"));
 		contribs.getChildren().add(CreditClose);
 	
