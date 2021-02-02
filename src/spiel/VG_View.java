@@ -23,7 +23,6 @@ public class VG_View extends Application
 	public Button spielfeld[][] = new Button[7][6];
 	public String playerNameOne;
 	public String playerNameTwo;
-	public VG_Model board = new VG_Model();
 	  
 	public void start(Stage primaryStage)
 	{
@@ -85,7 +84,7 @@ public class VG_View extends Application
 		TextInputDialog dialog1 = new TextInputDialog("");
 		dialog1.setTitle("Namens Verwaltung");
 		dialog1.setHeaderText("Füge den Namen für Spieler 1 hinzu");
-		dialog1.setContentText("Naaa wie heißt du den?:");
+		dialog1.setContentText("Gib deinen Namen ein:");
 		
 		// Warten auf eine Antwort, wenn es leer gelassen wird wird ein Placeholder benutzt
 		Optional<String> result1 = dialog1.showAndWait();
@@ -100,14 +99,14 @@ public class VG_View extends Application
 		TextInputDialog dialog2 = new TextInputDialog("");
 		dialog2.setTitle("Namens Verwaltung");
 		dialog2.setHeaderText("Füge den Namen für Spieler 2 hinzu");
-		dialog2.setContentText("Naaa wie heißt du den?:");
+		dialog2.setContentText("Gib deinen Namen ein:");
 		
 		// Warten auf eine Antwort, wenn es leer gelassen wird wird ein Placeholder benutzt
 		Optional<String> result2 = dialog2.showAndWait();
 		if (result2.isPresent()){
 			playerNameTwo = result2.get();
 		} else {
-			playerNameTwo = "Unknown One";
+			playerNameTwo = "Unbekannter Spieler 2";
 		}
 		
 		/*	=========================================
