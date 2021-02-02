@@ -13,4 +13,4 @@ Spieler wählt die jeweilige spalte aus in die der Chip fällt. Die Software prüft
 
 Ziel des Spieles: 
 
-Ziel des Spieles ist es in einer Reihe/Spalte oder in einer Diagonale 4 Chips seiner Farbe zu haben ohne, dass diese von dem anderen Spieler unterbrochen wird. Gewonnen hat der, der diese Anforderung erfüllt. 
+Ziel des Spieles ist es in einer Reihe/Spalte oder in einer Diagonale 4 Chips seiner Farbe zu haben ohne, dass diese von dem anderen Spieler unterbrochen wird. Gewonnen hat der, der diese Anforderung erfüllt.  
