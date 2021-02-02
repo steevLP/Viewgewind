@@ -54,9 +54,9 @@ public class VG_View extends Application
 		Button CreditClose = new Button("Okay");
 		
 		contribs.getChildren().add(new Label("Credits"));
-		contribs.getChildren().add(new Label("Maurice F (Functional Programming)"));
-		contribs.getChildren().add(new Label("Jenni (Visual Programming)"));
-		contribs.getChildren().add(new Label("Alex (Conzept Design)"));
+		contribs.getChildren().add(new Label("Maurice F (Functional Programming & Conzeptional Design)"));
+		contribs.getChildren().add(new Label("Jenni (Visual Programming & Conzeptional Design)"));
+		contribs.getChildren().add(new Label("Alex (Audio Programming & Conzeptional Design)"));
 		contribs.getChildren().add(new Label("Michell Dehn (war dabei)"));
 		contribs.getChildren().add(CreditClose);
 	
