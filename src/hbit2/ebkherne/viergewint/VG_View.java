@@ -206,6 +206,7 @@ public class VG_View extends Application
 		model.updateBoard();
 	}
 	
+	// Updatet das Spielfeld
 	public void update(int[][] board) {
 		System.out.println("update");
 		// Wir erstellen ein Array das 7 Hoch und 6 Lang ist

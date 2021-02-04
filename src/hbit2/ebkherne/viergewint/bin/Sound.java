@@ -1,4 +1,4 @@
-package hbit2.ebkherne.viergewint.utils;
+package hbit2.ebkherne.viergewint.bin;
 
 import java.io.File;
 
@@ -15,7 +15,6 @@ public class Sound {
 	 * @param media Pfad zur audiodatei
 	 */
 	public static void playSound(String media) throws Exception {
-		// Die audiodatei
 		Media sound = new Media(new File(media).toURI().toString());
 		MediaPlayer player = new MediaPlayer(sound);
 		player.play();
