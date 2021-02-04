@@ -23,7 +23,13 @@ public class VG_View extends Application
 	public Button spielfeld[][] = new Button[7][6];
 	public String playerNameOne;
 	public String playerNameTwo;
-	  
+	private VG_Model model = new VG_Model(this);
+	
+	/*@Override
+	public void init() {
+		model = new VG_Model(this);
+	}*/
+	
 	public void start(Stage primaryStage)
 	{
 		BorderPane pane = new BorderPane();
@@ -35,7 +41,7 @@ public class VG_View extends Application
 		     
 		// Wir erstellen ein Array das 7 Hoch und 6 Lang ist
 		for (int rows = 0; rows < 7; rows++){
-			for (int colums = 0; colums < 6; colums++){	  
+			for (int colums = 0; colums < 6; colums++){	   
 				spielfeld[rows][colums] = new Button();
 				spielfeld[rows][colums].setMinSize(28, 28);
 				grid.add(spielfeld[rows][colums], rows, colums+1);
@@ -181,6 +187,23 @@ public class VG_View extends Application
 		// Add everything to final display Scene and display it
 		primaryStage.setScene(new Scene(pane));
 		primaryStage.show();
+		model.updateBoard();
+	}
+	
+	public void update(int[][] board) {
+		System.out.println("update");
+		// Wir erstellen ein Array das 7 Hoch und 6 Lang ist
+		for (int rows = 0; rows < 7; rows++){
+			for (int colums = 0; colums < 6; colums++){	  
+				if(board[colums][rows] == 1) {
+					spielfeld[rows][colums].setText("O");
+				} else if(board[colums][rows] == 2) {
+					spielfeld[rows][colums].setText("X");
+				} else {
+					spielfeld[rows][colums].setText(" ");
+				}
+			}
+		}
 	}
 	
 	public static void main(String[] args)
