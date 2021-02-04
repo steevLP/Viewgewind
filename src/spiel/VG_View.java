@@ -11,10 +11,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
@@ -29,7 +32,7 @@ public class VG_View extends Application
 	public void init() {
 		model = new VG_Model(this);
 	}*/
-	
+    
 	public void start(Stage primaryStage)
 	{
 		BorderPane pane = new BorderPane();
@@ -38,31 +41,43 @@ public class VG_View extends Application
 		grid.setVgap(2);
 		pane.setMaxSize(400, 400);
 		grid.setPadding(new Insets(20, 30, 30, 20));
-		     
+				     
 		// Wir erstellen ein Array das 7 Hoch und 6 Lang ist
 		for (int rows = 0; rows < 7; rows++){
 			for (int colums = 0; colums < 6; colums++){	   
 				spielfeld[rows][colums] = new Button();
 				spielfeld[rows][colums].setMinSize(28, 28);
 				grid.add(spielfeld[rows][colums], rows, colums+1);
+				
+				spielfeld[rows][colums].setStyle(
+			            "-fx-background-radius: 5em; " +
+			            "-fx-min-width: 30px; " +
+			            "-fx-min-height: 30px; " +
+			            "-fx-max-width: 30px; " +
+			            "-fx-max-height: 30px;"
+			            + "-fx-color:white" 
+			    );
 			}
 		}
 		
-		// Wir setzten das Spielfenster in die mitte und geben es eine Maximale Größe von 400*400 Pixeln
+		// Wir setzten das Spielfenster in die mitte und geben es eine Maximale Größe von 400*400 Pixeln und geben diese eine Hintergund Farbe
 		pane.setCenter(grid);
 		pane.setMaxSize(400, 400);
-				
+		pane.setBackground(new Background(new BackgroundFill(Color.LIGHTYELLOW, null, null)));				
 		// Credits window
 		Popup credits = new Popup();
 		BorderPane layout = new BorderPane();
 		VBox contribs = new VBox();
 		Button CreditClose = new Button("Okay");
 		
+		
 		contribs.getChildren().add(new Label("Credits"));
 		contribs.getChildren().add(new Label("Maurice F (Functional Programming & Conzeptional Design)"));
 		contribs.getChildren().add(new Label("Jenni (Visual Programming & Conzeptional Design)"));
 		contribs.getChildren().add(new Label("Alex (Audio Programming & Conzeptional Design)"));
 		contribs.getChildren().add(new Label("Michell Dehn (war dabei)"));
+		contribs.getChildren().add(new Label("Bonekit (Jenni bat ihn um Hilfe und er half:D)"));
+
 		contribs.getChildren().add(CreditClose);
 	
 		// Assemble everthing to display
@@ -121,7 +136,7 @@ public class VG_View extends Application
 		 *  =========================================
 		 */
 		
-		// Sets Gamebard
+		// Sets Gameboard
 		pane.setCenter(grid);
 		
 		// Title
@@ -186,6 +201,7 @@ public class VG_View extends Application
 		
 		// Add everything to final display Scene and display it
 		primaryStage.setScene(new Scene(pane));
+		primaryStage.setResizable(false);
 		primaryStage.show();
 		model.updateBoard();
 	}
@@ -196,11 +212,34 @@ public class VG_View extends Application
 		for (int rows = 0; rows < 7; rows++){
 			for (int colums = 0; colums < 6; colums++){	  
 				if(board[colums][rows] == 1) {
-					spielfeld[rows][colums].setText("O");
-				} else if(board[colums][rows] == 2) {
-					spielfeld[rows][colums].setText("X");
-				} else {
-					spielfeld[rows][colums].setText(" ");
+					spielfeld[rows][colums].setStyle(
+						"-fx-background-radius: 5em; " +
+						"-fx-min-width: 30px; " +
+						"-fx-min-height: 30px; " +
+						"-fx-max-width: 30px; " +
+						"-fx-max-height: 30px;"
+						+ "-fx-color:RED" 
+						);	
+				} 
+				else if(board[colums][rows] == 2) {
+				spielfeld[rows][colums].setStyle(
+			            "-fx-background-radius: 5em; " +
+			            "-fx-min-width: 30px; " +
+			            "-fx-min-height: 30px; " +
+			            "-fx-max-width: 30px; " +
+			            "-fx-max-height: 30px;"
+			            + "-fx-color:BLUE" 
+						);	
+				}
+				else {
+				spielfeld[rows][colums].setStyle(
+			            "-fx-background-radius: 5em; " +
+			            "-fx-min-width: 30px; " +
+			            "-fx-min-height: 30px; " +
+			            "-fx-max-width: 30px; " +
+			            "-fx-max-height: 30px;"
+			            + "-fx-color:white" 
+						);
 				}
 			}
 		}
