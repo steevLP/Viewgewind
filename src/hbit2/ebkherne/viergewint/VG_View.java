@@ -1,4 +1,4 @@
-package spiel;
+package hbit2.ebkherne.viergewint;
 
 import java.util.Optional;
 
@@ -27,11 +27,6 @@ public class VG_View extends Application
 	public String playerNameOne;
 	public String playerNameTwo;
 	private VG_Model model = new VG_Model(this);
-	
-	/*@Override
-	public void init() {
-		model = new VG_Model(this);
-	}*/
     
 	public void start(Stage primaryStage)
 	{
