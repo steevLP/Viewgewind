@@ -1,4 +1,4 @@
-package spiel;
+package hbit2.ebkherne.viergewint;
 
 public class VG_Model {
 
@@ -9,7 +9,6 @@ public class VG_Model {
 	public VG_Model(VG_View view) {
 		this.view = view;
 		gameBoard = new int[6][7];
-		//view.update(gameBoard);
 	}
 	
 	public void updateBoard() {

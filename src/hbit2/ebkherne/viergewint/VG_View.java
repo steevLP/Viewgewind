@@ -1,7 +1,8 @@
-package spiel;
+package hbit2.ebkherne.viergewint;
 
 import java.util.Optional;
 
+import hbit2.ebkherne.viergewint.utils.Sound;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -24,14 +25,10 @@ public class VG_View extends Application
 	public String playerNameOne;
 	public String playerNameTwo;
 	private VG_Model model = new VG_Model(this);
-	
-	/*@Override
-	public void init() {
-		model = new VG_Model(this);
-	}*/
-	
+		
 	public void start(Stage primaryStage)
 	{
+		
 		BorderPane pane = new BorderPane();
 		GridPane grid = new GridPane();
 		grid.setHgap(2);
