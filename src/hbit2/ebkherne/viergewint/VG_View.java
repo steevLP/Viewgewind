@@ -2,6 +2,7 @@ package hbit2.ebkherne.viergewint;
 
 import java.util.Optional;
 
+import hbit2.ebkherne.viergewint.bin.Sound;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -37,6 +38,13 @@ public class VG_View extends Application
 		pane.setMaxSize(400, 400);
 		grid.setPadding(new Insets(20, 30, 30, 20));
 				     
+		try {
+			Sound.playSound("res/audio/ding.mp3");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		// Wir erstellen ein Array das 7 Hoch und 6 Lang ist
 		for (int rows = 0; rows < 7; rows++){
 			for (int colums = 0; colums < 6; colums++){	   
