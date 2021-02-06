@@ -75,7 +75,10 @@ public class VG_View extends Application
 		
 		// Credits window
 		Button CloseBtn = new Button("Okay");
-		CreditsWindow.addItems(new Label("test"));
+		CreditsWindow.addItems(new Label("Credits"));
+		CreditsWindow.addItems(new Label("Maurice F (Functional Programming / Engine development & Conceptional Design)"));
+		CreditsWindow.addItems(new Label("Jenni (Visual Programming & Conceptional Design)"));
+		CreditsWindow.addItems(new Label("Alex (Audio Design & Conceptional Design)"));
 		CreditsWindow.addItems(CloseBtn);
 		
 		CloseBtn.setOnAction(ae -> { CreditsWindow.togglePopup(primaryStage); });
