@@ -11,7 +11,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
@@ -76,9 +75,9 @@ public class VG_View extends Application
 		// Credits window
 		Button CloseBtn = new Button("Okay");
 		CreditsWindow.addItems(new Label("Credits"));
-		CreditsWindow.addItems(new Label("Maurice F (Functional Programming / Engine development & Conceptional Design)"));
-		CreditsWindow.addItems(new Label("Jenni (Visual Programming & Conceptional Design)"));
-		CreditsWindow.addItems(new Label("Alex (Audio Design & Conceptional Design)"));
+		CreditsWindow.addItems(new Label("Maurice F (Functional Programming / Engine development & Project Management & Conceptional Design)"));
+		CreditsWindow.addItems(new Label("Jenni (Visual Programming & Project Management & Conceptional Design)"));
+		CreditsWindow.addItems(new Label("Alex (Audio Design)"));
 		CreditsWindow.addItems(CloseBtn);
 		
 		CloseBtn.setOnAction(ae -> { CreditsWindow.togglePopup(primaryStage); });
@@ -154,14 +153,15 @@ public class VG_View extends Application
 		Quit.setOnAction(ae -> { primaryStage.close(); });
 		Credits.setOnAction(ae -> { CreditsWindow.togglePopup(primaryStage); }); 
 		
-		// displays credits
+		// displays Buttons
 		pane.setBottom(buttons);
-		
+
+		model.updateBoard();
+				
 		// Add everything to final display Scene and display it
 		primaryStage.setScene(new Scene(pane));
 		primaryStage.setResizable(false);
 		primaryStage.show();
-		model.updateBoard();
 	}
 	
 	// Updatet das Spielfeld
