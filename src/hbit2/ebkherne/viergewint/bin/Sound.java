@@ -13,6 +13,7 @@ public class Sound {
 	/**
 	 * Method zum abspielen einer sound datei
 	 * @param media Pfad zur audiodatei
+	 * @deprecated wird gegen eine neue funktion ersetzt
 	 */
 	public static void playSound(String media) throws Exception {
 		Media sound = new Media(new File(media).toURI().toString());

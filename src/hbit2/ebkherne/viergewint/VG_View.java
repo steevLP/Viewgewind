@@ -3,9 +3,9 @@ package hbit2.ebkherne.viergewint;
 import java.util.Optional;
 
 import hbit2.ebkherne.viergewint.bin.Sound;
+import hbit2.ebkherne.viergewint.bin.utils.DialogWindow;
+import hbit2.ebkherne.viergewint.bin.utils.PopupWindow;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -17,9 +17,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 public class VG_View extends Application
@@ -33,11 +31,15 @@ public class VG_View extends Application
 	{
 		BorderPane pane = new BorderPane();
 		GridPane grid = new GridPane();
+		PopupWindow CreditsWindow = new PopupWindow(primaryStage);
 		grid.setHgap(2);
 		grid.setVgap(2);
 		pane.setMaxSize(400, 400);
 		grid.setPadding(new Insets(20, 30, 30, 20));
-				     
+			
+		/**
+		 * WIchtig es muss eine exception abgefangen werden sonst wirft Java Fehler aus!
+		 */
 		try {
 			Sound.playSound("res/audio/ding.mp3");
 		} catch (Exception e) {
@@ -63,76 +65,26 @@ public class VG_View extends Application
 			}
 		}
 		
+		// Name vom ersten Spieler
+		DialogWindow P1Name = new DialogWindow("Namens Verwaltug", "Spieler eins gib deinen Namen ein", "Gib deinen Namen ein");
+		playerNameOne = P1Name.showDialog(P1Name.window);
+				
+		// Name von Spieler 2 Wählen
+		DialogWindow P2Name = new DialogWindow("Namens Verwaltung", "Füge den Namen für Spieler 2 hinzu", "Gib deinen Namen ein:");
+		playerNameTwo = P2Name.showDialog(P2Name.window);
+		
+		// Credits window
+		Button CloseBtn = new Button("Okay");
+		CreditsWindow.addItems(new Label("test"));
+		CreditsWindow.addItems(CloseBtn);
+		
+		CloseBtn.setOnAction(ae -> { CreditsWindow.togglePopup(primaryStage); });
+				
 		// Wir setzten das Spielfenster in die mitte und geben es eine Maximale Größe von 400*400 Pixeln und geben diese eine Hintergund Farbe
 		pane.setCenter(grid);
 		pane.setMaxSize(400, 400);
-		pane.setBackground(new Background(new BackgroundFill(Color.LIGHTYELLOW, null, null)));				
-		// Credits window
-		Popup credits = new Popup();
-		BorderPane layout = new BorderPane();
-		VBox contribs = new VBox();
-		Button CreditClose = new Button("Okay");
-		
-		
-		contribs.getChildren().add(new Label("Credits"));
-		contribs.getChildren().add(new Label("Maurice F (Functional Programming & Conzeptional Design)"));
-		contribs.getChildren().add(new Label("Jenni (Visual Programming & Conzeptional Design)"));
-		contribs.getChildren().add(new Label("Alex (Audio Programming & Conzeptional Design)"));
-		contribs.getChildren().add(new Label("Michell Dehn (war dabei)"));
-		contribs.getChildren().add(new Label("Bonekit (Jenni bat ihn um Hilfe und er half:D)"));
-
-		contribs.getChildren().add(CreditClose);
-	
-		// Assemble everthing to display
-		layout.setRight(contribs);
-		layout.setStyle(" -fx-background-color: white; -fx-padding:5px;");
-		credits.getContent().add(layout);
-		
-		// Display and track popup interaction
-		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
-			
-			// Check if popup is displayed and handle inputs
-			@Override
-			public void handle(ActionEvent e) {
-				if(!credits.isShowing()) {
-					credits.show(primaryStage);
-				} else {
-					credits.hide();
-				}
-			}
-		};
-	
-		CreditClose.setOnAction(event);
-		
-		// Name von Spieler 1 Wählen
-		TextInputDialog dialog1 = new TextInputDialog("");
-		dialog1.setTitle("Namens Verwaltung");
-		dialog1.setHeaderText("Füge den Namen für Spieler 1 hinzu");
-		dialog1.setContentText("Gib deinen Namen ein:");
-		
-		// Warten auf eine Antwort, wenn es leer gelassen wird wird ein Placeholder benutzt
-		Optional<String> result1 = dialog1.showAndWait();
-		if (result1.isPresent()){
-			playerNameOne = result1.get();
-		}
-		else{
-			playerNameOne = "Unbekannter Spieler 1";
-		}
-		
-		// Name von Spieler 2 Wählen
-		TextInputDialog dialog2 = new TextInputDialog("");
-		dialog2.setTitle("Namens Verwaltung");
-		dialog2.setHeaderText("Füge den Namen für Spieler 2 hinzu");
-		dialog2.setContentText("Gib deinen Namen ein:");
-		
-		// Warten auf eine Antwort, wenn es leer gelassen wird wird ein Placeholder benutzt
-		Optional<String> result2 = dialog2.showAndWait();
-		if (result2.isPresent()){
-			playerNameTwo = result2.get();
-		} else {
-			playerNameTwo = "Unbekannter Spieler 2";
-		}
-		
+		pane.setBackground(new Background(new BackgroundFill(Color.LIGHTYELLOW, null, null)));		
+						
 		/*	=========================================
 		 * 	Visual Position
 		 * 	Engineerd by Jenni cleaned by Maurice F
@@ -159,7 +111,7 @@ public class VG_View extends Application
 		pane.setTop(TitleLayout);
 		
 		// Contains name of player 1
-		Label playerOne  = new Label("Spieler 1:" + playerNameOne);
+		Label playerOne  = new Label("Spieler 1: " + playerNameOne);
 		HBox PlayerOneContainer = new HBox();
 		
 		PlayerOneContainer.setPadding(new Insets(10, 5, 5, 10));
@@ -170,7 +122,7 @@ public class VG_View extends Application
 		pane.setLeft(PlayerOneContainer);
 		
 		// Contains name of player 2
-		Label playerTwo = new Label("Spieler 2:" + playerNameTwo);
+		Label playerTwo = new Label("Spieler 2: " + playerNameTwo);
 		HBox PlayerTwoContainer = new HBox();
 
 		playerTwo.setAlignment(Pos.TOP_RIGHT);
@@ -196,10 +148,10 @@ public class VG_View extends Application
 		buttons.getChildren().add(Credits);
 
 		// Button Functions
-		Quit.setOnAction(ae -> {
-			primaryStage.close();
-		});
-		Credits.setOnAction(event); // displays credits
+		Quit.setOnAction(ae -> { primaryStage.close(); });
+		Credits.setOnAction(ae -> { CreditsWindow.togglePopup(primaryStage); }); 
+		
+		// displays credits
 		pane.setBottom(buttons);
 		
 		// Add everything to final display Scene and display it
@@ -224,27 +176,16 @@ public class VG_View extends Application
 						"-fx-max-height: 30px;"
 						+ "-fx-color:RED" 
 						);	
+				} else if(board[colums][rows] == 2) {
+					spielfeld[rows][colums].setStyle(
+			            "-fx-background-radius: 5em; " +
+			            "-fx-min-width: 30px; " +
+			            "-fx-min-height: 30px; " +
+			            "-fx-max-width: 30px; " +
+			            "-fx-max-height: 30px;" +
+			            "-fx-color:BLUE" 
+					);	
 				} 
-				else if(board[colums][rows] == 2) {
-				spielfeld[rows][colums].setStyle(
-			            "-fx-background-radius: 5em; " +
-			            "-fx-min-width: 30px; " +
-			            "-fx-min-height: 30px; " +
-			            "-fx-max-width: 30px; " +
-			            "-fx-max-height: 30px;"
-			            + "-fx-color:BLUE" 
-						);	
-				}
-				else {
-				spielfeld[rows][colums].setStyle(
-			            "-fx-background-radius: 5em; " +
-			            "-fx-min-width: 30px; " +
-			            "-fx-min-height: 30px; " +
-			            "-fx-max-width: 30px; " +
-			            "-fx-max-height: 30px;"
-			            + "-fx-color:white" 
-						);
-				}
 			}
 		}
 	}
