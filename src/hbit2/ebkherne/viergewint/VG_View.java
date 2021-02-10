@@ -37,7 +37,7 @@ public class VG_View extends Application
 		grid.setPadding(new Insets(20, 30, 30, 20));
 			
 		/**
-		 * WIchtig es muss eine exception abgefangen werden sonst wirft Java Fehler aus!
+		 * Wichtig es muss eine exception abgefangen werden sonst wirft Java Fehler aus!
 		 */
 		try {
 			Sound.playSound("res/audio/ding.mp3");
